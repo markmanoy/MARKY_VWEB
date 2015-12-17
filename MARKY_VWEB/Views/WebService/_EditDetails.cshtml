@@ -1,0 +1,164 @@
+﻿@model Marky_VWeb.ItemService.ItemInfo
+
+@{
+    ViewBag.Title = "Edit Product";
+}
+<h4 style="color: red; font-size: 20px;">@Html.Raw(TempData["Message"])</h4>
+<h2>Edit @Html.DisplayFor(model => model.Name)</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>@Html.DisplayFor(model => model.Name)</legend>
+        <table>
+            <tr>
+                <td class="editor-label">Product Name
+                </td>
+                <td class="editor-field">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">Manufacturer
+                </td>
+                <td class="editor-field">
+                    @Html.EditorFor(model => model.Manufacturer)
+                    @Html.ValidationMessageFor(model => model.Manufacturer)
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">Cost
+                </td>
+                <td class="editor-field">
+                    @Html.EditorFor(model => model.Cost)
+                    @Html.ValidationMessageFor(model => model.Cost)
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">Product Type
+                </td>
+                <td class="editor-field">
+                    @{
+    List<SelectListItem> prodType = new List<SelectListItem>();
+    prodType.Add(new SelectListItem
+    {
+        Text = "PC & Laptops",
+        Value = "1"
+    });
+    prodType.Add(new SelectListItem
+    {
+        Text = "Mobile & Tablets",
+        Value = "2"
+    });
+    prodType.Add(new SelectListItem
+    {
+        Text = "Cameras",
+        Value = "3"
+    });
+    prodType.Add(new SelectListItem
+    {
+        Text = "Others",
+        Value = "4"
+    });
+                    }
+
+                    @Html.DropDownListFor(model => model.TypeId, prodType, new { id = "type", @style = "width: 310px;height:30px;" })
+                    @Html.ValidationMessageFor(model => model.TypeId)
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">Product Subtype
+                </td>
+                <td class="editor-field">
+                    @{
+    List<SelectListItem> prodSubType1 = new List<SelectListItem>();
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Computer",
+        Value = "1"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Laptop and Netbooks",
+        Value = "2"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Parts & Accessories",
+        Value = "3"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Others",
+        Value = "4"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Smartphone",
+        Value = "5"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Tablet",
+        Value = "6"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Phablet",
+        Value = "7"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Accessories",
+        Value = "8"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "DSLR",
+        Value = "9"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Mirrorless",
+        Value = "10"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Point & shoot",
+        Value = "11"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Accessories",
+        Value = "12"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Others",
+        Value = "4"
+    });
+                        
+                    }
+
+                    @Html.DropDownListFor(model => model.SubTypeId, prodSubType1, new { id = "stype1", @style = "width: 310px;height:30px;" })
+                    @Html.ValidationMessageFor(model => model.SubTypeId)
+                </td>
+            </tr>
+
+        </table>
+
+        <p>
+            <input class="button" type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

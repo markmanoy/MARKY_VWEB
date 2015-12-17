@@ -1,0 +1,218 @@
+﻿@model  Marky_VWeb.ItemService.ItemInfo
+
+@{
+    ViewBag.Title = "Add New Item";
+}
+<h4 style="color: red; font-size: 20px;">@Html.Raw(TempData["Message"])</h4>
+<h2>Add New Product</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product</legend>
+        <table>
+            <tr>
+                <td class="editor-label"> Name
+                </td>
+                <td class="editor-field">
+                    @Html.TextBoxFor(model => model.Name, new { autofocus = "" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">Manufacturer
+                </td>
+                <td class="editor-field">
+                    @Html.EditorFor(model => model)
+                    @Html.ValidationMessageFor(model => model.Manufacturer)
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">Cost
+                </td>
+                <td class="editor-field">
+                    @Html.EditorFor(model => model.Cost)
+                    @Html.ValidationMessageFor(model => model.Cost)
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">Product Type
+                </td>
+                <td class="editor-field">
+                    @{
+    List<SelectListItem> prodType = new List<SelectListItem>();
+    prodType.Add(new SelectListItem
+    {
+        Text = "PC & Laptops",
+        Value = "1"
+    });
+    prodType.Add(new SelectListItem
+    {
+        Text = "Mobile & Tablets",
+        Value = "2"
+    });
+    prodType.Add(new SelectListItem
+    {
+        Text = "Cameras",
+        Value = "3"
+    });
+    prodType.Add(new SelectListItem
+    {
+        Text = "Others",
+        Value = "4"
+    });
+                    }
+
+                    @Html.DropDownList("TypeId", new SelectList(prodType, "Value", "Text"), new { id = "type", @style = "width: 310px;height:30px;" })
+                    @Html.ValidationMessageFor(model => model.TypeId)
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">Product Subtype
+                </td>
+                <td class="editor-field">
+                    @{
+    List<SelectListItem> prodSubType1 = new List<SelectListItem>();
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Computer",
+        Value = "1"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Laptop and Netbooks",
+        Value = "2"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Parts & Accessories",
+        Value = "3"
+    });
+    prodSubType1.Add(new SelectListItem
+    {
+        Text = "Others",
+        Value = "4"
+    });
+                    }
+
+                    @Html.DropDownList("SubTypeID", new SelectList(prodSubType1, "Value", "Text"), new { id = "stype1", @style = "width: 310px;height:30px;" })
+                    @{
+    List<SelectListItem> prodSubType2 = new List<SelectListItem>();
+    prodSubType2.Add(new SelectListItem
+    {
+        Text = "Smartphone",
+        Value = "5"
+    });
+    prodSubType2.Add(new SelectListItem
+    {
+        Text = "Tablet",
+        Value = "6"
+    });
+    prodSubType2.Add(new SelectListItem
+    {
+        Text = "Phablet",
+        Value = "7"
+    });
+    prodSubType2.Add(new SelectListItem
+    {
+        Text = "Accessories",
+        Value = "8"
+    });
+                    }
+
+                    @Html.DropDownList("SubTypeId", new SelectList(prodSubType2, "Value", "Text"), new { id = "stype2", @style = "width: 310px;height:30px;", @hidden = "hidden" })
+                    @{
+    List<SelectListItem> prodSubType3 = new List<SelectListItem>();
+    prodSubType3.Add(new SelectListItem
+    {
+        Text = "DSLR",
+        Value = "9"
+    });
+    prodSubType3.Add(new SelectListItem
+    {
+        Text = "Mirrorless",
+        Value = "10"
+    });
+    prodSubType3.Add(new SelectListItem
+    {
+        Text = "Point & shoot",
+        Value = "11"
+    });
+    prodSubType3.Add(new SelectListItem
+    {
+        Text = "Accessories",
+        Value = "12"
+    });
+                    }
+
+                    @Html.DropDownList("SubTypeId", new SelectList(prodSubType3, "Value", "Text"), new { id = "stype3", @style = "width: 310px;height:30px;", @hidden = "hidden" })
+                    @{
+    List<SelectListItem> prodSubType4 = new List<SelectListItem>();
+    prodSubType4.Add(new SelectListItem
+    {
+        Text = "Others",
+        Value = "1"
+    });
+                    }
+
+                    @Html.DropDownList("SubTypeId", new SelectList(prodSubType4, "Value", "Text"), new { id = "stype4", @style = "width: 310px;height:30px;", @hidden = "hidden" })
+                    @Html.ValidationMessageFor(model => model.SubTypeId)
+                </td>
+            </tr>
+
+        </table>
+        <p>
+            <input type="submit" value="Create" class="button" />
+            @Html.ActionLink("View All", "Index", new { id = "ViewAll" }, new { @class = "button" })
+        </p>
+
+    </fieldset>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $("#type").on("change", function () {
+            var x = $("#type").val()
+            if (x == "1") {
+                $("#lblSubtype").show();
+                $("#stype1").show();
+                $("#stype2").hide();
+                $("#stype3").hide();
+                $("#stype4").hide();
+
+            }
+            if (x == "2") {
+                $("#lblSubtype").show();
+                $("#stype2").show();
+                $("#stype1").hide();
+                $("#stype3").hide();
+                $("#stype4").hide();
+
+            }
+            if (x == "3") {
+                $("#lblSubtype").show();
+                $("#stype3").show();
+                $("#stype2").hide();
+                $("#stype1").hide();
+                $("#stype4").hide();
+
+            }
+            if (x == "4") {
+                $("#lblSubtype").show();
+                $("#stype4").show();
+                $("#stype2").hide();
+                $("#stype3").hide();
+                $("#stype1").hide();
+
+            }
+
+        });
+    </script>
+}
+

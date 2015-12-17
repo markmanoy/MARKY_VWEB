@@ -1,0 +1,106 @@
+﻿@model Marky_VWeb.ItemService.ItemInfo
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<fieldset>
+    <legend></legend>
+    <table>
+        <tr>
+            <td class="display-label">
+                <b>Product Type:</b>
+            </td>
+            <td class="display-field">
+                @{  string type = Html.DisplayFor(model => model.TypeId) + "";}
+                @if (type.Equals("1"))
+                {
+                    <label class="display-label">Computer</label>
+                }
+                else if (type.Equals("2"))
+                {
+                    <label class="display-label">Mobile & Tablets</label>
+                }
+                else if (type.Equals("3"))
+                {
+                    <label class="display-label">Cameras</label>
+                }
+                else if (type.Equals("4"))
+                {
+                    <label class="display-label">Others</label>
+                }
+                else
+                {
+                    <label class="display-label">Unknown</label>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="display-label">
+                <b>Product Subtype:</b>
+            </td>
+            <td class="display-field">
+                @{  string subtype = Html.DisplayFor(model => model.SubTypeId) + "";}
+                @if (subtype.Equals("1"))
+                {
+                    <label class="display-label">Computer</label>
+                }
+                else if (subtype.Equals("2"))
+                {
+                    <label class="display-label">Laptop and Netbooks</label>
+                }
+                else if (subtype.Equals("3"))
+                {
+                    <label class="display-label">Parts & Accessories</label>
+                }
+                else if (subtype.Equals("4"))
+                {
+                    <label class="display-label">Others</label>
+                }
+                else if (subtype.Equals("5"))
+                {
+                    <label class="display-label">Smartphone</label>
+                }
+                else if (subtype.Equals("6"))
+                {
+                    <label class="display-label">Tablet</label>
+                }
+                else if (subtype.Equals("7"))
+                {
+                    <label class="display-label">Phablet</label>
+                }
+                else if (subtype.Equals("8"))
+                {
+                    <label class="display-label">Accessories</label>
+                }
+                else if (subtype.Equals("9"))
+                {
+                    <label class="display-label">DSLR</label>
+                }
+                else if (subtype.Equals("10"))
+                {
+                    <label class="display-label">Mirrorless</label>
+                }
+                else if (subtype.Equals("11"))
+                {
+                    <label class="display-label">Point & shoot</label>
+                }
+                else if (subtype.Equals("12"))
+                {
+                    <label class="display-label">Accessories</label>
+                }
+                else
+                {
+                    <label class="display-label">Unknown</label>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="display-label">
+                <b>Manufacturer:</b>
+            </td>
+            <td class="display-field">
+                <b>@Html.DisplayFor(model => model.Manufacturer)</b>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+
